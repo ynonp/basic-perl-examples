@@ -1,0 +1,96 @@
+PERL(1)                   BSD General Commands Manual                  PERL(1)
+
+NNAAMMEE
+     ppeerrll,, aa22pp -- Practical Extraction and Report Language
+
+SSYYNNOOPPSSIISS
+     ppeerrll ...
+     aa22pp ...
+
+DDEESSCCRRIIPPTTIIOONN
+     To support multiple versions, the program named ppeerrll now just selects the
+     real version of Perl to run, and the program named aa22pp now just selects
+     the real version of the awk-to-perl translator to run, depending on vari-
+     ous settings.  The current supported versions are 55..88..88 (provided for
+     backward-compatibility with the Perl 5.8 family) and 55..1100..00, with the
+     default being 55..1100..00.  Use
+
+           % man perl5.8.8
+           % man perl5.10.0
+           % man a2p5.8.8
+           % man a2p5.10.0
+
+     to see the man page for a specific version.  Without a version specified,
+
+           % man perldoc
+
+     and the like, will show the man page for the (unmodified) default version
+     of Perl (55..1100..00).  To see the man page for a specific version, use, for
+     example,
+
+           % man perldoc5.8.8
+
+CCHHAANNGGIINNGG TTHHEE DDEEFFAAUULLTT PPEERRLL
+     Using
+
+           % defaults write com.apple.versioner.perl Version 5.8.8
+
+     will make version 55..88..88 the user default when running the both the ppeerrll
+     and aa22pp commands (vveerrssiioonneerr is the internal name of the version-selection
+     software used).
+
+     To set a system-wide default, replace `com.apple.versioner.perl' with
+     `/Library/Preferences/com.apple.versioner.perl' (admin privileges will be
+     required).
+
+     The environment variable VERSIONER_PERL_VERSION can also be used to set
+     the ppeerrll and aa22pp version:
+
+           % export VERSIONER_PERL_VERSION=5.8.8 _# _B_o_u_r_n_e_-_l_i_k_e _s_h_e_l_l_s
+                oorr
+           % setenv VERSIONER_PERL_VERSION 5.8.8 _# _C_-_l_i_k_e _s_h_e_l_l_s
+           % perl ...
+
+     This environment variable takes precedence over the preference file set-
+     tings.
+
+6644--BBIITT SSUUPPPPOORRTT
+     Version 55..1100..00 supports 64-bit execution (which is on by default).  Ver-
+     sion 55..88..88 only supports 32-bit execution.
+
+     Like the version of Perl, the ppeerrll command can select between 32 and
+     64-bit execution (when both are available).  Use:
+
+           % defaults write com.apple.versioner.perl Prefer-32-Bit -bool yes
+
+     to make 32-bit execution the user default (using
+     `/Library/Preferences/com.apple.versioner.perl' will set the system-wide
+     default).  The environment variable VERSIONER_PERL_PREFER_32_BIT can also
+     be used (has precedence over the preference file):
+
+           % export VERSIONER_PERL_PREFER_32_BIT=yes _# _B_o_u_r_n_e_-_l_i_k_e _s_h_e_l_l_s
+                oorr
+           % setenv VERSIONER_PERL_PREFER_32_BIT yes _# _C_-_l_i_k_e _s_h_e_l_l_s
+
+     Again, the preference setting and environmental variable applies to both
+     ppeerrll and aa22pp.
+
+UUSSIINNGG AA SSPPEECCIIFFIICC VVEERRSSIIOONN
+     Rather than using the ppeerrll command, one can use a specific version
+     directly.  For example, running ppeerrll55..88..88 from the command line will run
+     the 55..88..88 version of Perl, independent of what the default version of
+     Perl is.
+
+     One can use a specific version of Perl on the _#_! line of a script, but
+     that may have portability and future compatibility issues.
+
+     Note that the preference files and environment variable that apply to the
+     ppeerrll command, do nnoott apply when running a specific version of Perl.  In
+     particular, running ppeerrll55..1100..00 will always default to 64-bit execution
+     (unless one uses the arch(1) command to specifically select a 32-bit
+     architecture).
+
+SSEEEE AALLSSOO
+     perl5.8.8(1), perl5.10.0(1), a2p5.8.8(1), a2p5.10.0(1), arch(1)
+
+BSD                              Aug 10, 2008                              BSD
