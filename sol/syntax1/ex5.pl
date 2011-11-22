@@ -18,11 +18,11 @@ use strict;
 use warnings;
 
 my $text;
-my $bit = 0;
+my $bit;
 
 while (my $line = <>) {
-    $bit  += 1;
-    $text .= $line if $bit % 2;
+    $bit = !$bit;
+    $text .= $line if $bit;
 }
 
 print $text;
