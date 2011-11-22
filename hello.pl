@@ -1,69 +1,27 @@
-#####
-# WELCOME TO PERL
+#!/usr/bin/perl 
+#===============================================================================
 #
+#         FILE: hello.pl
+#
+#        USAGE: ./hello.pl  
+#
+#  DESCRIPTION: Our first cool perl app
+#
+#       AUTHOR: Ynon Perek (), ynonperek@gmail.com
+#      COMPANY: 
+#      VERSION: 1.0
+#      CREATED: 11/22/2011 10:05:23
+#     REVISION: ---
+#===============================================================================
 use strict;
 use warnings;
 
-# output a sentence
-print "Hello World\n";
+use feature ':5.10';
 
-# declare a variable
-my $name = "Ynon";
-print "Hello $name\n";
+my $number1 = 5;
+my $number2 = 7;
 
-print length($name), "\n";
+my $sum = $number1 + $number2;
 
-# use variables
-my $lastname = "Perek";
-my $fullname = "$name $lastname";
-
-# loops
-for( my $i =0; $i < 10; ++$i ) {
-    print ">>>>>> $i <<<<<<\n";
-}
-
-my $counter = 10;
-while ( $counter > 0 ) {
-    print $counter;
-    $counter -= 1;
-}
-print "\n";
-
-# branches
-if ( 1 < 2 ) {
-    print "Cool math still works\n";
-} elsif ( 1 > 3 ) {
-    print "Oh no, its the end of the world\n";
-} else {
-    print "Oh no, its the end of the world\n";
-}
-
-# user input
-#my $input = <>;
-#for ( 1..10 ) {
-#    print $input;
-#}
-
-
-# single quotes
-print 'Hello \n';
-print "\n";
-print 'Hello $name';
-print "\n";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+say   "Average is: ", $sum / 2;
+print "Average is: ", $sum / 2, "\n";
