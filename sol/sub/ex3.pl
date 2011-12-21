@@ -21,17 +21,17 @@ use warnings;
 use Carp;
 use List::Util qw/sum/;
 
-sub tenth_digit { 
+sub tens_digit { 
     my ($number) = @_;
     return int(($number / 10) % 10);
 }
 
 sub sum_of_tens {
-    return sum map { tenth_digit($_) }
-                grep { $_ % 2 == 0 } @_;
+    return sum map { tens_digit($_) } @_;
 }
 
 print sum_of_tens(120, 140, 220);
+
 
 
 

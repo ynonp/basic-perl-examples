@@ -30,3 +30,8 @@ if ( abs($index) < @text ) {
 }
 
 
+
+
+
+
+

@@ -19,7 +19,7 @@
 use strict;
 use warnings;
 
-my @text  = <>;
+my @text    = <>;
 my @indices = <>;
 
 foreach my $index (@indices) {
