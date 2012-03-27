@@ -1,79 +1,46 @@
-#!/usr/bin/perl 
-#===============================================================================
-#
-#         FILE: part1.pl
-#
-#  DESCRIPTION: Contains at least two digits
-#
-#       AUTHOR: Ynon Perek (), ynonperek@gmail.com
-#      COMPANY: 
-#      VERSION: 1.0
-#      CREATED: 11/14/2011 14:23:42
-#     REVISION: ---
-#===============================================================================
-
 use strict;
 use warnings;
-use Carp;
+use v5.14;
 
-my $TWO_DIGITS_SEPARATED = qr {
-# find a digit
-    [0-9]
+my $TWO_DIGITS = qr { [0-9].*[0-9] }x;
+my $DIGITS     = qr { ([0-9]) }x;
+my $CAPROW     = qr { [A-Z]{5} }x;
+my $CAPSEP     = qr { (
+    [A-Z]
+    (?:[^A-Z] | $)
+)
+}x;
 
-# some stuff afterwards
+my $STARTS_WITH_A_W = qr {
+# first letter - w
+    ^w
+# then don't care
     .*
 
-# then another digit
-    [0-9]
+# last letter - digit
+    [0-9]$
 }x;
 
-my $ONLY_FOUR_DIGITS = qr {
-# start of word
-
-^
-    \D*
-    (
-        \d
-
-        \D*
-    ) {4}
-
-$
-}x;
-
-my $COUNT_DIGITS    = qr { ([0-9]) }x;
-my $AT_LEAST_5_CAPS = qr { [A-Z]{5} }x;
-my $CAPS_SEPARATED  = qr { ([A-Z][^A-Z]) }x;
-
-my $STARTS_WITH_W_AND_ENDS_WITH_DIGIT = qr {
-    ^w    .*    [0-9]$
-}x;
+my $WORDS = qr { (\b\w+\b) }x;
+my $LONG_WORDS = qr { (\b\w{5,}\b) }x;
 
 while (<>) {
-    print "one\n" if /$TWO_DIGITS_SEPARATED/;
+    say "Two Digits" if /$TWO_DIGITS/;
+    my @digits = /$DIGITS/g;
 
-    print "two\n" if /$ONLY_FOUR_DIGITS/;
-    my @digits = /$COUNT_DIGITS/g;
-    print "two!\n" if @digits == 4;
+    say "Four Digits" if @digits == 4;
+    say "Five Continum" if /$CAPROW/;
+    my @capsep = /$CAPSEP/g;
+    warn "capsep = @capsep";
+    say "Caps Separated" if @capsep == 5;
+    say "five" if /$STARTS_WITH_A_W/;
 
-    print "three\n" if /$AT_LEAST_5_CAPS/;
+    my @words = /$WORDS/g;
+    say "Three Words" if @words >= 3;
 
-    my @caps   = /$CAPS_SEPARATED/g;
-    print "four\n" if @caps == 5;
-    
-    print "five\n" if /$STARTS_WITH_W_AND_ENDS_WITH_DIGIT/;
-
-    my @words = split;
-    print "six\n" if @words >= 3;
-
-    my @long_words = grep /.{5,}/, @words;
-    print "seven\n" if @long_words >= 2;
-
-    my @peli = grep { $_ eq reverse($_) } @words;
-    print "eight\n" if @peli;
+    my @long_words = /$LONG_WORDS/g;
+    say "Long Words" if @long_words >= 2;
 }
-
-
 
 
 
