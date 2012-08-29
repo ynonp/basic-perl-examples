@@ -1,38 +1,33 @@
 #!/usr/bin/perl 
 #===============================================================================
 #
-#         FILE: ex2.pl
+#         FILE: ex3.pl
 #
-#        USAGE: ./ex2.pl  
+#        USAGE: ./ex3.pl  
 #
-#  DESCRIPTION: Write a program that reads 10 numbers from the 
-#               user and prints the largest of them
+#  DESCRIPTION: write a program that randomizes 7 numbers and prints their sum. 
+#               If that sum is divisable by 7, it should also print 'Boom !'. 
+#               (You can use the % operator that means modulus).
 #
 #       AUTHOR: Ynon Perek (), ynonperek@gmail.com
 #      COMPANY: 
 #      VERSION: 1.0
-#      CREATED: 11/13/2011 13:12:28
+#      CREATED: 11/13/2011 13:21:06
 #     REVISION: ---
 #===============================================================================
-
+use v5.10;
 use strict;
 use warnings;
 
-print "Type a number:\n";
-my $max = <>;
+my $sum = 0;
 
-for ( 1..9 ) {
-    print "Type another number: \n";
-    my $num = <>;
-    chomp $num;
+for ( 1..7 ) {
+    my $num = int(rand(100));
+    say "randomized $num";
 
-    print "you typed $num, thank you\n";
-
-    if ( $num > $max ) {
-        $max = $num;
-    }
+    $sum += $num;
 }
 
-print "The largest is $max\n";
-
+say "sum is $sum";
+say "Boom !"            if $sum % 7 == 0;
 

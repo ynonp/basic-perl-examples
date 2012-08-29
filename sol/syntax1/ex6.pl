@@ -1,35 +1,40 @@
 #!/usr/bin/perl 
 #===============================================================================
 #
-#         FILE: ex6.pl
+#         FILE: ex7.pl
 #
-#        USAGE: ./ex6.pl  
+#        USAGE: ./ex7.pl  
 #
-#  DESCRIPTION: Write a program that randomizes numbers in a loop 
-#               until it reaches a number that is divisable by 7, 13 and 15. 
-#               Then prints that number
+#  DESCRIPTION: Write a program that reads a number n from the user, 
+#               then randomizes n numbers and prints their sum, average and max.
 #
 #       AUTHOR: Ynon Perek (), ynonperek@gmail.com
 #      COMPANY: 
 #      VERSION: 1.0
-#      CREATED: 11/13/2011 13:47:38
+#      CREATED: 11/13/2011 13:56:04
 #     REVISION: ---
 #===============================================================================
 
 use strict;
 use warnings;
 
-my $number;
+print "Tell me a number\n";
+my $n = <>;
 
-# next and last example
-while ( 1 ) {
-    $number = int(rand(9999999999999));
+my $sum = 0;
+my $max = 0;
 
-    next if $number %  7 != 0;
-    next if $number % 13 != 0;
-    next if $number % 15 != 0;
+for (1..$n) {
+    my $num = int(rand(100));
+    $sum += $num;
 
-    last;
+    if ( $num > $max ) {
+        $max = $num;
+    }
 }
 
-print "$number is good\n";
+my $avg = $sum / $n;
+print "Average is $avg\n";
+print "Sum is $sum\n";
+print "Max is $max\n";
+

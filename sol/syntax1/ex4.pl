@@ -1,34 +1,28 @@
 #!/usr/bin/perl 
 #===============================================================================
 #
-#         FILE: ex4.pl
+#         FILE: 5.pl
 #
-#        USAGE: ./ex4.pl  
+#        USAGE: ./5.pl  
 #
-#  DESCRIPTION: Write a program that randomizes a number and 
-#               calculates the sum total of its digits.
+#  DESCRIPTION: Write a program that reads lines from a user. 
+#               When input ends, the program should print every other line.
 #
 #       AUTHOR: Ynon Perek (), ynonperek@gmail.com
 #      COMPANY: 
 #      VERSION: 1.0
-#      CREATED: 11/13/2011 13:28:28
+#      CREATED: 11/13/2011 13:34:09
 #     REVISION: ---
 #===============================================================================
 use strict;
 use warnings;
 
-print "Enter a number to calculate\n";
-my $num = <>;
-chomp $num;
+my $text;
+my $bit;
 
-my $sum = 0;
-
-while ( $num > 0 ) {
-    $sum += $num % 10;
-    $num = int($num / 10);
+while (my $line = <>) {
+    $bit = !$bit;
+    $text .= $line if $bit;
 }
 
-#$sum += chop($num) while $num;
-print "sum of digits is $sum\n";
-
-
+print $text;
